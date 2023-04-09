@@ -39,10 +39,15 @@ function App() {
       <button
         onClick={() => {
           fetch(
-            "http://localhost/projectsXAMPP/todo_backend/php/files/getTables.php"
-          ).then((response) => {
-            console.log(response);
-          });
+            "http://localhost/projectsXAMPP/todo_backend/php/files/getTables.php",
+            { method: "POST" }
+          )
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data);
+            });
         }}
       >
         FETCH!
