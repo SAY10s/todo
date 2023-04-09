@@ -2,6 +2,7 @@ import TasksLayout from "./layouts/TasksLayout";
 import NewLayout from "./components/NewLayout";
 import "./App.css";
 import { useState } from "react";
+import { log } from "console";
 
 function App() {
   const [layouts, setLayouts] = useState<string[]>([]);
@@ -34,6 +35,18 @@ function App() {
       </div>
 
       <NewLayout onAddLayout={addLayoutHandler} />
+
+      <button
+        onClick={() => {
+          fetch(
+            "http://localhost/projectsXAMPP/todo_backend/php/files/getTables.php"
+          ).then((response) => {
+            console.log(response);
+          });
+        }}
+      >
+        FETCH!
+      </button>
     </>
   );
 }
