@@ -2,7 +2,6 @@ import TasksLayout from "./layouts/TasksLayout";
 import NewLayout from "./components/NewLayout";
 import "./App.css";
 import { useState } from "react";
-import { log } from "console";
 
 function App() {
   const [layouts, setLayouts] = useState<string[]>([]);
@@ -11,44 +10,36 @@ function App() {
 
   const deleteLayoutHandler = (title: string) => {};
 
+  const getLayoutData = () => {
+    fetch(
+      "http://localhost/projectsXAMPP/todo_backend/php/files/getTables.php",
+      { method: "POST" }
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setLayouts(
+          data.map((element: { tableName: string }) => element.tableName)
+        );
+      });
+  };
+
   return (
     <>
       <div className="wrapperBig">
-        {layouts.map((element) => {
+        {layouts.map((element, index) => {
           return (
             <TasksLayout
+              key={index}
               title={element}
               deleteLayoutHandler={deleteLayoutHandler}
             />
           );
         })}
       </div>
-
       <NewLayout onAddLayout={addLayoutHandler} />
-
-      <button
-        onClick={() => {
-          fetch(
-            "http://localhost/projectsXAMPP/todo_backend/php/files/getTables.php",
-            { method: "POST" }
-          )
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              console.log(data);
-              return data.map(
-                (element: { tableName: string }) => element.tableName
-              );
-            })
-            .then((processedData) => {
-              console.log(processedData);
-              setLayouts(processedData);
-            });
-        }}
-      >
-        FETCH!
-      </button>
+      <button onClick={getLayoutData}>FETCH!</button>
     </>
   );
 }
