@@ -6,7 +6,16 @@ import { useState, useEffect } from "react";
 function App() {
   const [layouts, setLayouts] = useState<string[]>([]);
 
-  const addLayoutHandler = (title: string) => {};
+  const addLayoutHandler = (title: string) => {
+    let formData = new FormData();
+    formData.append("tableName", title);
+    fetch(
+      "http://localhost/projectsXAMPP/todo_backend/php/files/tables/addTable.php",
+      { method: "POST", body: formData }
+    ).then(() => {
+      getLayoutData();
+    });
+  };
 
   const deleteLayoutHandler = (title: string) => {
     let formData = new FormData();
