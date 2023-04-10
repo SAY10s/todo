@@ -1,18 +1,27 @@
 import TasksLayout from "./layouts/TasksLayout";
 import NewLayout from "./components/NewLayout";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [layouts, setLayouts] = useState<string[]>([]);
 
   const addLayoutHandler = (title: string) => {};
 
-  const deleteLayoutHandler = (title: string) => {};
+  const deleteLayoutHandler = (title: string) => {
+    let formData = new FormData();
+    formData.append("tableName", title);
+    fetch(
+      "http://localhost/projectsXAMPP/todo_backend/php/files/tables/deleteTable.php",
+      { method: "POST", body: formData }
+    ).then(() => {
+      getLayoutData();
+    });
+  };
 
   const getLayoutData = () => {
     fetch(
-      "http://localhost/projectsXAMPP/todo_backend/php/files/getTables.php",
+      "http://localhost/projectsXAMPP/todo_backend/php/files/tables/getTables.php",
       { method: "POST" }
     )
       .then((response) => {
@@ -24,6 +33,7 @@ function App() {
         );
       });
   };
+  useEffect(getLayoutData, []);
 
   return (
     <>
