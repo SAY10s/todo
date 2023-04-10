@@ -7,19 +7,9 @@ import { log } from "console";
 function App() {
   const [layouts, setLayouts] = useState<string[]>([]);
 
-  const addLayoutHandler = (title: string) => {
-    setLayouts((prevState) => {
-      return prevState.concat(title);
-    });
-  };
+  const addLayoutHandler = (title: string) => {};
 
-  const deleteLayoutHandler = (title: string) => {
-    setLayouts((prevState) => {
-      return prevState.filter((element) => {
-        return element !== title;
-      });
-    });
-  };
+  const deleteLayoutHandler = (title: string) => {};
 
   return (
     <>
