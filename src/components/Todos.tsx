@@ -1,7 +1,7 @@
 import React from "react";
 import Todo from "../models/todo";
 import TodoUI from "./TodoUI";
-import Classes from "./Todos.module.css";
+import Classes from "./CSS/Todos.module.css";
 
 const Todos: React.FC<{
   items: Todo[];

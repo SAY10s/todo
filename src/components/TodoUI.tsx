@@ -1,4 +1,4 @@
-import Classes from "./TodoItem.module.css";
+import Classes from "./CSS/TodoItem.module.css";
 
 const ToDoUI: React.FC<{
   text: string;
