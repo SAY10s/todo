@@ -47,6 +47,13 @@ function App() {
             })
             .then((data) => {
               console.log(data);
+              return data.map(
+                (element: { tableName: string }) => element.tableName
+              );
+            })
+            .then((processedData) => {
+              console.log(processedData);
+              setLayouts(processedData);
             });
         }}
       >
