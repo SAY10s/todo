@@ -22,10 +22,14 @@ const TasksLayout: React.FC<{
     });
   };
 
-  const deleteTodoHandler = (test: string) => {
-    setTodos((prevState) => {
-      let newList = prevState.filter((element) => element.id !== test);
-      return newList;
+  const deleteTodoHandler = (toDoId: number) => {
+    let formData = new FormData();
+    formData.append("id", `${toDoId}`);
+    fetch(
+      "http://localhost/projectsXAMPP/todo_backend/php/files/todo/deleteTodo.php",
+      { method: "POST", body: formData }
+    ).then(() => {
+      getTodoHandler();
     });
   };
 
@@ -48,7 +52,7 @@ const TasksLayout: React.FC<{
               title: string;
               belongsToTable: string;
             }) => {
-              return new Todo(element.title);
+              return new Todo(element.title, element.id);
             }
           )
         );
