@@ -51,7 +51,7 @@ function App() {
           return (
             <TasksLayout
               key={index}
-              title={element}
+              layoutTitle={element}
               deleteLayoutHandler={deleteLayoutHandler}
             />
           );
