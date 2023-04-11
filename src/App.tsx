@@ -58,7 +58,6 @@ function App() {
         })}
       </div>
       <NewLayout onAddLayout={addLayoutHandler} />
-      <button onClick={getLayoutData}>FETCH!</button>
     </>
   );
 }

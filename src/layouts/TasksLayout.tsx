@@ -25,6 +25,33 @@ const TasksLayout: React.FC<{
     });
   };
 
+  const getTodoHandler = () => {
+    let formData = new FormData();
+    formData.append("tableName", props.title);
+    fetch(
+      "http://localhost/projectsXAMPP/todo_backend/php/files/todo/getTodo.php",
+      { method: "POST", body: formData }
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setTodos(
+          data.map(
+            (element: {
+              id: number;
+              title: string;
+              belongsToTable: string;
+            }) => {
+              return new Todo(element.title);
+            }
+          )
+        );
+      });
+  };
+  getTodoHandler();
+
   return (
     <div className={Classes.taskLayoutWrapper}>
       <h2>{props.title}</h2>
