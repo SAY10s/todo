@@ -5,7 +5,7 @@ import Classes from "./CSS/Todos.module.css";
 
 const Todos: React.FC<{
   items: Todo[];
-  onDeleteTodo: (test: string) => void;
+  onDeleteTodo: (toDoId: number) => void;
 }> = (props) => {
   return (
     <ul className={Classes.todos}>

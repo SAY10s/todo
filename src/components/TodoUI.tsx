@@ -2,8 +2,8 @@ import Classes from "./CSS/TodoItem.module.css";
 
 const ToDoUI: React.FC<{
   text: string;
-  id: string;
-  onDeleteTodo: (test: string) => void;
+  id: number;
+  onDeleteTodo: (toDoId: number) => void;
 }> = (props) => {
   return (
     <li
